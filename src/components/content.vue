@@ -22,6 +22,11 @@
         <p class="control">
           <button v-on:click="closeNote()" class="button is-link">Cancel</button>
         </p>
+        <p class="control">
+          <button v-on:click="deleteNote(activeNotes)" class="button is-link">
+            <i class="icon-bin"></i>
+          </button>
+        </p>
       </div>
     </div>
     <div v-else="show">
@@ -37,11 +42,6 @@ export default {
     show () {
       return this.$store.getters.holders.empty
     },
-    notes () {
-      return this.$store.getters.notes.map(note => {
-        return note.date
-      })
-    },
     activeNotes () {
       return this.$store.getters.activeNotes
     }
@@ -49,6 +49,9 @@ export default {
   methods: {
     closeNote () {
       this.$store.dispatch('closeNote')
+    },
+    deleteNote (note) {
+      this.$store.dispatch('deleteNote', note)
     },
     updateNote () {
       const updateDate = new Date()

@@ -49,6 +49,14 @@ const mutations = {
     note.content = payload.content
     note.date = payload.date
   },
+  DELETE_NOTE (state, payload) {
+    const note = state.notes.find(note => {
+      return note.id === payload.id
+    })
+    state.notes.splice(state.notes.indexOf(note), 1)
+    state.activeNotes = []
+    state.holders.empty = false
+  },
   CLOSE_NOTE (state) {
     state.holders.empty = false
   }
@@ -77,6 +85,9 @@ export const store = new Vuex.Store({
     },
     updateNote (context, note) {
       context.commit('UPDATE_NOTE', note)
+    },
+    deleteNote (context, note) {
+      context.commit('DELETE_NOTE', note)
     },
     closeNote (context) {
       context.commit('CLOSE_NOTE')
