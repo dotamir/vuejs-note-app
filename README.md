@@ -1,6 +1,6 @@
-# noteapp
+# Note app
 
-> A Vue.js project
+> A simple note app with VueJs, This is base of my goal :)
 
 ## Build Setup
 
